@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"eegurt.go-clean-arch/pkg/store/postgres"
-	"eegurt.go-clean-arch/services/contact/internal/domain"
 )
 
 func main() {
@@ -23,9 +22,5 @@ func main() {
 
 	defer db.Close()
 
-	nikita := domain.NewContact("Romanov", "Nikita", "Savvich")
-	aida := domain.NewContact("Osipova", "Aida", "Artemovna")
-	group1 := domain.NewGroup("Group 1")
-
-	fmt.Println(nikita, aida, group1)
+	fmt.Println("app started")
 }

@@ -16,12 +16,12 @@ func (c Contact) FullName() fullName {
 	return c.fullName
 }
 
-func NewContact(last, first, middle string) *Contact {
+func NewContact(last, first, middle string, phone int) *Contact {
 	fname := fullName{
 		Last:   last,
 		First:  first,
 		Middle: middle,
 	}
 
-	return &Contact{fullName: fname}
+	return &Contact{fullName: fname, Phone: phone}
 }
