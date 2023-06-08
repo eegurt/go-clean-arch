@@ -4,15 +4,18 @@ import (
 	"eegurt.go-clean-arch/services/contact/internal/domain"
 )
 
-type ContactUsecase interface {
-	Create(user *domain.Contact) (int, error)
-	Read(id int) (*domain.Contact, error)
-	Update(id int) error
-	Delete(id int) error
+type UseCase interface {
+	CreateContact(user *domain.Contact) (int, error)
+	ReadContact(id int) (*domain.Contact, error)
+	UpdateContact(id int) error
+	DeleteContact(id int) error
+	CreateGroup(group *domain.Group) (int, error)
+	ReadGroup(id int) (*domain.Group, error)
+	AddContact(id int) error
 }
 
-type GroupUsecase interface {
-	Create(group *domain.Group) (int, error)
-	Read(id int) (*domain.Group, error)
-	AddContact(id int) error
+type useCase struct{}
+
+func NewUseCase() *useCase {
+	return &useCase{}
 }

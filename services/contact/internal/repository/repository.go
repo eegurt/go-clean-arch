@@ -4,15 +4,18 @@ import (
 	"eegurt.go-clean-arch/services/contact/internal/domain"
 )
 
-type ContactRepo interface {
-	Create(user *domain.Contact) (int, error)
-	Read(id int) (*domain.Contact, error)
-	Update(id int) error
-	Delete(id int) error
+type Repo interface {
+	CreateContact(user *domain.Contact) (int, error)
+	ReadContact(id int) (*domain.Contact, error)
+	UpdateContact(id int) error
+	DeleteContact(id int) error
+	CreateGroup(group *domain.Group) (int, error)
+	ReadGroup(id int) (*domain.Group, error)
+	AddContact(id int) error
 }
 
-type GroupRepo interface {
-	Create(group *domain.Group) (int, error)
-	Read(id int) (*domain.Group, error)
-	AddContact(id int) error
+type repo struct{}
+
+func NewRepo() *repo {
+	return &repo{}
 }
