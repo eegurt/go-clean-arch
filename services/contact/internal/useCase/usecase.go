@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"eegurt.go-clean-arch/services/contact/internal/domain"
+	"eegurt.go-clean-arch/services/contact/internal/repository"
 )
 
 type UseCase interface {
@@ -14,8 +15,10 @@ type UseCase interface {
 	AddContact(id int) error
 }
 
-type useCase struct{}
+type useCase struct {
+	repo repository.Repo
+}
 
-func New() *useCase {
-	return &useCase{}
+func New(repo repository.Repo) *useCase {
+	return &useCase{repo: repo}
 }

@@ -7,6 +7,10 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+type DB struct {
+	Pool *pgxpool.Pool
+}
+
 type DbConnParams struct {
 	Host     string
 	Port     int
@@ -15,7 +19,7 @@ type DbConnParams struct {
 	DbName   string
 }
 
-func OpenDB(dcp *DbConnParams) (*pgxpool.Pool, error) {
+func OpenDB(dcp *DbConnParams) (*DB, error) {
 	dsn := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", dcp.User, dcp.Password, dcp.Host, dcp.Port, dcp.DbName)
 
 	db, err := pgxpool.New(context.Background(), dsn)
@@ -28,5 +32,7 @@ func OpenDB(dcp *DbConnParams) (*pgxpool.Pool, error) {
 		return nil, err
 	}
 
-	return db, nil
+	DB := &DB{Pool: db}
+
+	return DB, nil
 }

@@ -1,7 +1,13 @@
 package delivery
 
-type delivery struct{}
+import "net/http"
+
+type delivery struct {
+	Mux *http.ServeMux
+}
 
 func New() *delivery {
-	return &delivery{}
+	mux := http.NewServeMux()
+
+	return &delivery{Mux: mux}
 }

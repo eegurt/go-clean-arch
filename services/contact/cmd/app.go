@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
 	"eegurt.go-clean-arch/pkg/store/postgres"
 	"eegurt.go-clean-arch/services/contact/internal/delivery"
@@ -23,16 +24,14 @@ func main() {
 		fmt.Println(err)
 	}
 
-	defer db.Close()
+	defer db.Pool.Close()
 
-	repo := repository.New()
+	repo := repository.New(db.Pool)
 	delivery := delivery.New()
-	usecase := usecase.New()
+	usecase := usecase.New(repo)
 
-	_, _, _ = repo, delivery, usecase
+	_ = usecase
 
 	fmt.Println("app started")
-	for {
-
-	}
+	http.ListenAndServe("localhost:4000", delivery.Mux)
 }

@@ -2,6 +2,7 @@ package repository
 
 import (
 	"eegurt.go-clean-arch/services/contact/internal/domain"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Repo interface {
@@ -14,8 +15,38 @@ type Repo interface {
 	AddContact(id int) error
 }
 
-type repo struct{}
+type repo struct {
+	DB *pgxpool.Pool
+}
 
-func New() *repo {
-	return &repo{}
+func New(db *pgxpool.Pool) *repo {
+	return &repo{DB: db}
+}
+
+func (r *repo) CreateContact(user *domain.Contact) (int, error) {
+	return 0, nil
+}
+
+func (r *repo) ReadContact(id int) (*domain.Contact, error) {
+	return nil, nil
+}
+
+func (r *repo) UpdateContact(id int) error {
+	return nil
+}
+
+func (r *repo) DeleteContact(id int) error {
+	return nil
+}
+
+func (r *repo) CreateGroup(group *domain.Group) (int, error) {
+	return 0, nil
+}
+
+func (r *repo) ReadGroup(id int) (*domain.Group, error) {
+	return nil, nil
+}
+
+func (r *repo) AddContact(id int) error {
+	return nil
 }
