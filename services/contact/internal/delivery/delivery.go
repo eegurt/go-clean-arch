@@ -2,6 +2,6 @@ package delivery
 
 type delivery struct{}
 
-func NewDelivery() *delivery {
+func New() *delivery {
 	return &delivery{}
 }

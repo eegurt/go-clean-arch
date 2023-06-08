@@ -16,6 +16,6 @@ type UseCase interface {
 
 type useCase struct{}
 
-func NewUseCase() *useCase {
+func New() *useCase {
 	return &useCase{}
 }

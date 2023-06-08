@@ -16,6 +16,6 @@ type Repo interface {
 
 type repo struct{}
 
-func NewRepo() *repo {
+func New() *repo {
 	return &repo{}
 }

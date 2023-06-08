@@ -4,6 +4,9 @@ import (
 	"fmt"
 
 	"eegurt.go-clean-arch/pkg/store/postgres"
+	"eegurt.go-clean-arch/services/contact/internal/delivery"
+	"eegurt.go-clean-arch/services/contact/internal/repository"
+	usecase "eegurt.go-clean-arch/services/contact/internal/useCase"
 )
 
 func main() {
@@ -22,5 +25,14 @@ func main() {
 
 	defer db.Close()
 
+	repo := repository.New()
+	delivery := delivery.New()
+	usecase := usecase.New()
+
+	_, _, _ = repo, delivery, usecase
+
 	fmt.Println("app started")
+	for {
+
+	}
 }
